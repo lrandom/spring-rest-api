@@ -11,5 +11,5 @@
 FROM openjdk:11-jdk
 WORKDIR app-jar
 COPY target/spring-rest-api-0.0.1-SNAPSHOT.jar /app-jar/spring-rest-api.jar
-EXPOSE 9999
+EXPOSE 9998
 CMD ["java", "-jar", "/app-jar/spring-rest-api.jar"]
