@@ -5,7 +5,6 @@ variables:
 
 stages:
   - build-jar
-  - build-image
   - deploy_to_production
 
 buildJar:
@@ -23,7 +22,7 @@ buildJar:
     - echo "Jar built Success"
     - echo "Build Docker Image"
     - docker build -t $TAG_COMMIT$TAG_JAR . #build docker jar build
-    - docker build -t $TAG_COMMIT$TAG_NGINX ./nginx . #build docker jar build
+    - docker build -t $TAG_COMMIT$TAG_NGINX ./nginx #build docker jar build
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY #login vào docker registry
     - docker push $TAG_COMMIT$TAG_JAR #push docker image lên registry
     - docker push $TAG_COMMIT$TAG_NGINX
