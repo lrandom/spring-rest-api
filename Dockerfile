@@ -9,6 +9,6 @@
 
 FROM openjdk:11-jdk
 WORKDIR app-jar
-COPY ./target/spring-boot.jar /app-jar/spring-rest-api.jar
+COPY target/spring-boot.jar /app-jar/spring-rest-api.jar
 CMD ["java", "-jar", "/app-jar/spring-rest-api.jar"]
 
