@@ -15,12 +15,12 @@ buildJar:
   only:
     - /^live_[0-9]+(?:.[0-9]+)+$/ # regular expression live_0.0.1, live_0.0.2, live_0.0.3, etc.
   artifacts:
-      paths:
-        - target/spring-boot.jar
+    paths:
+      - target/spring-boot.jar
   script:
     - echo "Building jar"
-    - mvn clean package -DskipTests
-    - echo "Jar built"
+    - mvn clean install -DskipTests
+    - echo "Jar built Success"
 
 buildImage:
   stage: build-image
