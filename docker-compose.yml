@@ -3,7 +3,7 @@ services:
     image: mariadb:10.3
     container_name: mariadb
     volumes:
-      - ./cy-notes.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./cy-notes.sql:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
     environment:
