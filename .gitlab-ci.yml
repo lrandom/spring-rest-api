@@ -47,10 +47,10 @@ deploy:
     - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY" #login vào registry
     - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker pull $TAG_COMMIT$TAG_JAR" #pull docker image về server
     - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker container rm -f spring-boot-app || true" #xoá ảnh cũ có tên là html-app đi
-    - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker run -d --name spring-boot-app -p 9998:9998 $TAG_COMMIT$TAG_JAR || true" #run docker image với tên là html-app
+    - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker run -d --name spring-boot-app -p 9998:9998 --network="host" $TAG_COMMIT$TAG_JAR || true" #run docker image với tên là html-app
     - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker pull $TAG_COMMIT$TAG_NGINX" #pull docker image về server
     - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker container rm -f nginx || true" #xoá ảnh cũ có tên là html-app đi
-    - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker run -d --name nginx -p 80:80 $TAG_COMMIT$TAG_NGINX" #run docker image với tên là html-app
+    - ssh -i $GITLAB_CI_SSH_KEY -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "docker run -d --name nginx -p 80:80 --network="host" $TAG_COMMIT$TAG_NGINX" #run docker image với tên là html-app
   environment:
     name: production
     url: http://$SERVER_HOST #url của server chạy web
