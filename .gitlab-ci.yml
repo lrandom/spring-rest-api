@@ -3,6 +3,7 @@ variables:
   TAG_JAR: "jar"
   TAG_NGINX: "nginx"
   GITLAB_CI_SSH_KEY: $GITLAB_CI_SSH_KEY
+  SERVER_HOST: $SERVER_HOST
 
 stages:
   - build-jar
